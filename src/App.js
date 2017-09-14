@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
 class Menu extends Component {
@@ -19,12 +19,17 @@ class Menu extends Component {
 
   show() {
     this.props.handleShow(this.props.name);
+    this.props.handleShow(this.props.image);
     }
   
   less() {
     this.setState({qty: this.state.qty - 1});
-    this.props.handleTotal(this.props.price); 
+    this.props.handleTotal(-this.props.price); 
   }
+
+
+
+
 
 
   render() {
@@ -32,29 +37,38 @@ class Menu extends Component {
       
 
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-5">
+       <div className="row">
+          <div className="col-lg-6">
              <div className="col-sm-2">
       <h3>{this.state.qty}</h3>
              </div>
-             <div className="col-sm-3"> 
+            
       <h3>Php {this.state.qty*this.props.price}</h3>
-        </div>
+
+
+   
+      <button className="btn btn-primary" onClick={this.less}>-</button>
+       
       <hr/>  
-        </div>
-         <div className="col-lg-7">
-           <div className="row">
-          <div className="col-sm-5">
-          <p>{this.props.name} = Php {this.props.price}</p>
-          </div>
-            <div className="col-sm-2">
+    
+         <div className="col-lg-6">
+         
+
+          <img
+          src={process.env.PUBLIC_URL + 'img/img'+ this.props.img_id +'.png'}
+          />
+
+         <p>{this.props.name} = Php {this.props.price}</p>
+          
             <button className="btn btn-primary" onClick={this.add}>+</button>
-           <button className="btn btn-primary" onClick={this.less}>-</button>
-           </div>
+            
+         
            </div>
         </div> 
       </div>
       </div>
+      </div>
+
     );
   }
 }
@@ -116,11 +130,11 @@ class MenuList extends Component {
     constructor(props) {
       super(props);
       this.state={total:0,
-         menuList: [{name:"Buteteng Tugak", price: 50.00},
-                  {name:"Abuos", price: 60.00},
-                  {name:"Ginataang Kuhol", price: 70.00},
-                  {name:"Adobong Salagubang", price: 80.00},
-                  {name:"Pinawikan", price: 90.00}]
+         menuList: [{name:"Buteteng Tugak", price: 50.00, img_id: "00" },
+                  {name:"Abuos", price: 60.00, img_id: "01"},
+                  {name:"Ginataang Kuhol", price: 70.00, img_id: "02"},
+                  {name:"Adobong Salagubang", price: 80.00, img_id: "03"},
+                  {name:"Pinawikang Kabayo", price: 90.00, img_id: "04"}]
      };
       this.calcTotal = this.calcTotal.bind(this);
       this.createMenu = this.createMenu.bind(this);
@@ -136,7 +150,7 @@ class MenuList extends Component {
 
     createMenu(menu) {
     this.setState({
-      productList: this.state.productList.concat(menu)
+      menuList: this.state.menuList.concat(menu)
     });
    }
 
@@ -147,9 +161,12 @@ class MenuList extends Component {
     var menus = this.state.menuList.map(
       function(men){
     return(
-        <Menu name={men.name} price={men.price}
+        <Menu name={men.name}
+        price={men.price}
         handleShow={component.showMenu}
-        handleTotal={component.calcTotal}/>
+        handleTotal={component.calcTotal}
+        img_id = {men.img_id}
+        />
       );
     });  
     

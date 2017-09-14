@@ -23,13 +23,13 @@ Install create-react-app (https://github.com/facebookincubator/create-react-app)
 
 Generate your starting files
 ```
-create-react-app my-app
+create-react-app pos_app
 ```
 
 After creation, your project should look like this:
 
 ```
-my-app/
+pos_app/
   README.md
   node_modules/
   package.json
@@ -45,7 +45,36 @@ my-app/
     logo.svg
 ```
 
+Using your terminal got to your project directory then run:
+### `npm start`
+
+This will normally open your app in the browser;  if not then open a browser then type [http://localhost:3000].
+
+Automatic page reload when after applying and saving your edits.
+
+
+
+
+
+
 ## Components Creation
+Components let you split the UI into independent, reusable pieces.
+Create a new component `Menu`
+```
+...
+
+class Menu extends Component {
+  render() {
+    return (
+      <div className='pos_app' >
+        
+      </div>
+    );
+  }
+
+
+export default Menu
+```
 
 
 ## Functions and Events

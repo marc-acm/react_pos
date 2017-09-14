@@ -35,41 +35,20 @@ class Menu extends Component {
   render() {
     return (
       
-
-      <div className="container-fluid">
-       <div className="row">
-          <div className="col-lg-6">
-             <div className="col-sm-2">
-      <h3>{this.state.qty}</h3>
-             </div>
-            
+ 
+      
       <h3>Php {this.state.qty*this.props.price}</h3>
-
-
-   
-      <button className="btn btn-primary" onClick={this.less}>-</button>
-       
+  
       <hr/>  
-    
-         <div className="col-lg-6">
-         
-
-          <img
-          src={process.env.PUBLIC_URL + 'img/img'+ this.props.img_id +'.png'}
-          />
-
-         <p>{this.props.name} = Php {this.props.price}</p>
+       <p>{this.props.name} = Php {this.props.price}</p>
+     <h3>{this.state.qty}</h3>
+     
+     <button className="btn btn-primary" onClick={this.less}>-</button>
           
-            <button className="btn btn-primary" onClick={this.add}>+</button>
+     <button className="btn btn-primary" onClick={this.add}>+</button>
             
-         
-           </div>
-        </div> 
-      </div>
-      </div>
-      </div>
-
-    );
+            
+   );
   }
 }
 
